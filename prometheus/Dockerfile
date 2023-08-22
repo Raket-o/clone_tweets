@@ -1,0 +1,1 @@
+COPY config.yml /etc/prometheus/prometheus.yml
