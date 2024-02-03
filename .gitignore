@@ -6,6 +6,7 @@ __pycache__/
 Tweets.postman_collection.json
 mypy.ini
 text.txt
+grafana/
 .flake8
 postgesql/
 

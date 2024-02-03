@@ -8,7 +8,7 @@ from sqlalchemy.future import select
 
 from app.schemas import tweets
 from app.utils.send_error import send_error
-from config_data.config import DB_HOST, DB_PASSWORD, DB_PORT, DB_USER
+from config_data.config import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
 
 from .connect import engine, session
 from .tables import Follower, Like, Picture, Tweet, User
@@ -18,7 +18,7 @@ async def create_db() -> None:
     cursor = await asyncpg.connect(
         f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}"
     )
-    await cursor.execute("CREATE DATABASE news_posts;")
+    await cursor.execute(f"CREATE DATABASE {DB_NAME};")
 
 
 async def get_user_id(api_key: str) -> int:
