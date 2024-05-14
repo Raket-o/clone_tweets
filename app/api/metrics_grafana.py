@@ -3,7 +3,7 @@ import prometheus_client
 from fastapi import APIRouter, Response
 
 
-router = APIRouter()
+router = APIRouter(tags=["metrics"])
 
 
 @router.get(path="/metrics")

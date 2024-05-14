@@ -10,7 +10,7 @@ from app.database.transactions import (
 )
 from app.schemas import users
 
-router = APIRouter(prefix='/users')
+router = APIRouter(prefix="/users", tags=["users"])
 
 
 @router.post(

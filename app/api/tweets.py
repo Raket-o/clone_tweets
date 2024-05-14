@@ -13,7 +13,7 @@ from app.database.transactions import (
 )
 from app.schemas import tweets
 
-router = APIRouter(prefix='/tweets')
+router = APIRouter(prefix="/tweets", tags=["tweets"])
 
 
 @router.post(path="/", status_code=201)

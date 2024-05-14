@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 
 from app.database.transactions import add_medias_db
 
-router = APIRouter(prefix="/medias")
+router = APIRouter(prefix="/medias", tags=["medias"])
 
 
 @router.post(
