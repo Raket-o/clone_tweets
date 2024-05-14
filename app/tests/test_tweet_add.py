@@ -3,8 +3,8 @@ from datetime import datetime
 
 from fastapi.testclient import TestClient
 
-from ..database.transactions import add_tweet_db
-from ..main import appFastAPI as app
+from app.database.transactions import add_tweet_db
+from app.main import appFastAPI as app
 
 API_KEY = "1"
 TWEET = {"tweet_data": "Test tweet.", "tweet_media_ids": [1]}

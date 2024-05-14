@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from ..main import appFastAPI as app
+from app.main import appFastAPI as app
 
 API_KEY = "1"
 

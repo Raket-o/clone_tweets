@@ -2,7 +2,7 @@ from os.path import abspath, dirname, join
 
 from fastapi.testclient import TestClient
 
-from ..main import appFastAPI as app
+from app.main import appFastAPI as app
 
 abs_path_file = dirname(abspath(__file__))
 abs_path_file = join(abs_path_file, "app", "medias", "test.png")
