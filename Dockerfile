@@ -14,6 +14,6 @@ COPY alembic alembic
 COPY .env .env
 COPY ./app ./app
 
-EXPOSE 8000
+#EXPOSE 8000
 
 ENTRYPOINT ["./app/docker-entrypoint.sh"]

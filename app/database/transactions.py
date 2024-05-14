@@ -10,8 +10,8 @@ from app.schemas import tweets
 from app.utils.send_error import send_error
 from config_data.config import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
 
-from .connect import engine, session
-from .tables import Follower, Like, Picture, Tweet, User
+from app.database.connect import engine, session
+from app.database.tables import Follower, Like, Picture, Tweet, User
 
 
 async def create_db() -> None:

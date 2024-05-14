@@ -48,42 +48,42 @@ services:
     networks:
       app_network:
         ipv4_address: 192.168.55.2
-
-  prometheus:
-      image: prom/prometheus:latest
-      volumes:
-        - ./prometheus/config.yml:/etc/prometheus/prometheus.yml
-      container_name: prometheus
-      depends_on:
-        - app
-      command:
-        - --config.file=/etc/prometheus/prometheus.yml
-      ports:
-        - 9090:9090
-      restart: unless-stopped
-      environment:
-        TZ: "Europe/Moscow"
-      networks:
-        app_network:
-          ipv4_address: 192.168.55.5
-
-  grafana:
-      image: grafana/grafana:5.1.0
-      user: root
-      depends_on:
-        - prometheus
-      ports:
-        - 3000:3000
-      volumes:
-        - ./grafana:/var/lib/grafana
-        - ./grafana/provisioning/:/etc/grafana/provisioning/
-      container_name: grafana
-      restart: unless-stopped
-      environment:
-        TZ: "Europe/Moscow"
-      networks:
-        app_network:
-          ipv4_address: 192.168.55.6
+#
+#  prometheus:
+#      image: prom/prometheus:latest
+#      volumes:
+#        - ./prometheus/config.yml:/etc/prometheus/prometheus.yml
+#      container_name: prometheus
+#      depends_on:
+#        - app
+#      command:
+#        - --config.file=/etc/prometheus/prometheus.yml
+#      ports:
+#        - 9090:9090
+#      restart: unless-stopped
+#      environment:
+#        TZ: "Europe/Moscow"
+#      networks:
+#        app_network:
+#          ipv4_address: 192.168.55.5
+#
+#  grafana:
+#      image: grafana/grafana:5.1.0
+#      user: root
+#      depends_on:
+#        - prometheus
+#      ports:
+#        - 3000:3000
+#      volumes:
+#        - ./grafana:/var/lib/grafana
+#        - ./grafana/provisioning/:/etc/grafana/provisioning/
+#      container_name: grafana
+#      restart: unless-stopped
+#      environment:
+#        TZ: "Europe/Moscow"
+#      networks:
+#        app_network:
+#          ipv4_address: 192.168.55.6
 
 networks:
   app_network:

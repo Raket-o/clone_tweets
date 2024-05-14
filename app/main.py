@@ -16,22 +16,27 @@ appFastAPI = FastAPI()
 
 Instrumentator().instrument(appFastAPI).expose(appFastAPI)
 
+api_router = APIRouter(prefix='/api')
+
+api_router.include_router(medias.router)
+api_router.include_router(tweets.router)
+api_router.include_router(users.router)
+
+appFastAPI.include_router(metrics_grafana.router)
+appFastAPI.include_router(api_router)
+
 
 @appFastAPI.on_event("startup")
 async def startup() -> None:
     """the function is triggered when the application is launched"""
-    print("startup")
     try:
-        print("startup try")
         async with engine.begin() as conn:
             pass
 
     except InvalidCatalogNameError:
-        print("startup except")
         await create_db()
 
     finally:
-        print("startup finally")
         if DB_FILLING == "True":
             async with engine.begin() as conn:
                 await conn.run_sync(Base.metadata.drop_all)
@@ -49,13 +54,3 @@ async def shutdown() -> None:
     print("shutdown")
     await session.close()
     await engine.dispose()
-
-
-api_router = APIRouter(prefix='/api')
-
-api_router.include_router(medias.router)
-api_router.include_router(tweets.router)
-api_router.include_router(users.router)
-
-appFastAPI.include_router(metrics_grafana.router)
-appFastAPI.include_router(api_router)

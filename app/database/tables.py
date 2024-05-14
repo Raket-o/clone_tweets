@@ -1,6 +1,5 @@
 """the module for creating tables"""
 import datetime
-from typing import Any, Dict
 
 from sqlalchemy import ARRAY, Column, DateTime, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
@@ -33,7 +32,7 @@ class User(Base):
 
     def __repr__(self) -> str:
         """a function that returns a printed representation of a given object"""
-        return f'"id" {self.id}, "first_name": {self.first_name}, "last_name": {self.last_name}'
+        return f'"id": {self.id}, "first_name": {self.first_name}, "last_name": {self.last_name}'
 
 
 class Tweet(Base):
@@ -69,7 +68,7 @@ class Follower(Base):
 
     def __repr__(self) -> str:
         """a function that returns a printed representation of a given object"""
-        return f'"id" {self.id}, "user_id": {self.user_id}, "follower_id": {self.follower_id}'
+        return f'"id": {self.id}, "user_id": {self.user_id}, "follower_id": {self.follower_id}'
 
 
 class Like(Base):
@@ -83,12 +82,11 @@ class Like(Base):
 
     def __repr__(self) -> str:
         """a function that returns a printed representation of a given object"""
-        return f'"id" {self.id}, "user_id": {self.user_id}, "tweet_id": {self.tweet_id}'
+        return f'"id": {self.id}, "user_id": {self.user_id}, "tweet_id": {self.tweet_id}'
 
 
 class Picture(Base):
     """class for creating a table"""
-
     __tablename__ = "pictures"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
