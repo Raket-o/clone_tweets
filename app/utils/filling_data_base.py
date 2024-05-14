@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy.future import select
 
 from app.database.connect import engine, session
-from app.database.tables import Follower, Like, Picture, Tweet, User
+from app.database.models import Follower, Like, Picture, Tweet, User
 
 
 async def filling_db() -> None:

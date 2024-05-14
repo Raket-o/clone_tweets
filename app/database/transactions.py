@@ -11,7 +11,7 @@ from app.utils.send_error import send_error
 from config_data.config import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_TESTS, DB_USER
 
 from app.database.connect import engine, session
-from app.database.tables import Follower, Like, Picture, Tweet, User
+from app.database.models import Follower, Like, Picture, Tweet, User
 
 
 async def create_db() -> None:

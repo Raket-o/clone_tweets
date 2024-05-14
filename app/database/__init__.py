@@ -1,1 +1,1 @@
-from . import connect, tables, transactions
+from . import connect, models, transactions
