@@ -8,17 +8,19 @@ from sqlalchemy.future import select
 
 from app.schemas import tweets
 from app.utils.send_error import send_error
-from config_data.config import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
+from config_data.config import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_TESTS, DB_USER
 
 from app.database.connect import engine, session
 from app.database.tables import Follower, Like, Picture, Tweet, User
 
 
 async def create_db() -> None:
+    """database creation function"""
+    db_name = "clone_tweets_tests" if DB_TESTS else DB_NAME
     cursor = await asyncpg.connect(
         f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}"
     )
-    await cursor.execute(f"CREATE DATABASE {DB_NAME};")
+    await cursor.execute(f"CREATE DATABASE {db_name};")
 
 
 async def get_user_id(api_key: str) -> int:

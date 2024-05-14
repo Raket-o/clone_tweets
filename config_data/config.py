@@ -16,5 +16,6 @@ try:
 except ValueError:
     print("DB_PORT != INT")
     exit(1)
-DB_NAME = os.getenv("DB_NAME")
+DB_NAME = "tweet_clone"
 DB_FILLING = os.getenv("DB_FILLING")
+DB_TESTS = bool(os.getenv("DB_TESTS"))

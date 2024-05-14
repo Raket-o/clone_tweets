@@ -2,12 +2,13 @@
 import os
 
 from asyncpg.exceptions import InvalidCatalogNameError
+import asyncpg
 from fastapi import FastAPI, APIRouter
 from fastapi.staticfiles import StaticFiles
 from prometheus_fastapi_instrumentator import Instrumentator
 
 from app.api import medias, metrics_grafana, tweets, users
-from config_data.config import DB_FILLING
+from config_data.config import DB_TESTS
 from app.database.connect import Base, engine, session
 from app.database.transactions import create_db
 from app.utils.filling_data_base import filling_db
@@ -37,15 +38,19 @@ async def startup() -> None:
         await create_db()
 
     finally:
-        if DB_FILLING == "True":
+        if DB_TESTS:
             async with engine.begin() as conn:
                 await conn.run_sync(Base.metadata.drop_all)
                 await conn.run_sync(Base.metadata.create_all)
-            await filling_db()
+            # await filling_db()
 
         else:
             async with engine.begin() as conn:
                 await conn.run_sync(Base.metadata.create_all)
+
+        await filling_db()
+
+
 
 
 @appFastAPI.on_event("shutdown")
